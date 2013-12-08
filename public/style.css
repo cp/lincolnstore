@@ -1,0 +1,10 @@
+* {
+  font-family: helvetica;
+}
+
+#home {
+  margin-top: 5%;
+  color: #686868;
+  font-weight: 200;
+  text-align: center;
+}
