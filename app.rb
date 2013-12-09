@@ -27,6 +27,14 @@ get '/products/:id' do
   erb :product
 end
 
+get '/volunteer' do
+  erb :volunteer
+end
+
+get '/about' do
+  erb :about
+end
+
 def authenticate
   redirect '/' unless true
 end

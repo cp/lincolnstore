@@ -1,0 +1,16 @@
+{
+    "name": "suit-grid",
+    "version": "0.3.2",
+    "author": "Nicolas Gallagher",
+    "main": "grid.css",
+    "devDependencies": {
+        "suit-utils-dimension": "~0.4.0"
+    },
+    "ignore": [
+        ".*",
+        "CHANGELOG.md",
+        "component.json",
+        "package.json",
+        "test.html"
+    ]
+}
