@@ -1,14 +1,8 @@
 require 'sinatra'
 require 'sinatra/flash'
-require 'active_record'
-require 'dotenv'
-
-Dotenv.load! unless ENV['RACK_ENV'] == 'production'
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/lincolnstore')
+require File.expand_path('../environment.rb', __FILE__)
+Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|model| require model }
 enable :sessions
-
-class Product < ActiveRecord::Base
-end
 
 get '/' do
   @products = Product.all.limit(9)
@@ -18,7 +12,7 @@ end
 # Admin Page
 get '/admin' do
   authenticate
-  "Admin page"
+  erb :'admin/index'
 end
 
 # Products

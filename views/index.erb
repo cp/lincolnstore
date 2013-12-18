@@ -1,3 +1,6 @@
 <div id="home">
   <p id="intro"><b>Welcome to the Lincoln Student Store.</b> We're still putting this site together, but for now please go ahead and browse around! The Student Store is open Friday afternoons in the cafeteria.</p>
+  <% @products.each do |product| %>
+    <%= product.name %>
+  <% end %>
 </div>
