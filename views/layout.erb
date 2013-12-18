@@ -7,22 +7,24 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/bootstrap.css">
   </head>
   <body>
-    <a href="/"><img id="banner" src="/images/banner.png"></a>
-    <div id="nav">
-      <a href="/about">About</a> -
-      <a href="/volunteer">Volunteer</a> -
-      <a href="/contact">Contact</a>
+    <div id="page">
+      <a href="/"><img id="banner" src="/images/banner.png"></a>
+      <div id="nav">
+        <a href="/about">About</a> -
+        <a href="/volunteer">Volunteer</a> -
+        <a href="/contact">Contact</a>
+      </div>
+      <% if flash[:errors] %>
+        <div id="errors">
+        <%= 'ERRORS: ' + flash[:errors] %>
+      </div>
+      <% elsif flash[:message] %>
+        <div id="message">
+          <%= flash[:message] %>
+        </div>
+      <% end %>
+      <%= yield %>
     </div>
-    <% if flash[:errors] %>
-      <div id="errors">
-      <%= 'ERRORS: ' + flash[:errors] %>
-      </div>
-    <% elsif flash[:message] %>
-      <div id="message">
-        <%= flash[:message] %>
-      </div>
-    <% end %>
-    <%= yield %>
   </body>
   <footer>
   <span>Copyright 2013 Lincoln Student Store.</span>

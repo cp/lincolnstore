@@ -1,6 +1,16 @@
 <div id="home">
   <p id="intro"><b>Welcome to the Lincoln Student Store.</b> We're still putting this site together, but for now please go ahead and browse around! The Student Store is open Friday afternoons in the cafeteria.</p>
-  <% @products.each do |product| %>
-    <%= product.name %>
-  <% end %>
+  <div id="products">
+    <div class="Grid v1-Grid--3col">
+    <% @products.each_with_index do |product, i| %>
+      <div class="Grid-cell Grid-cell--<%= i+1 %>">
+        <div class="product">
+          <div class="name"><%= product.name %></div>
+          <div class="description"><%= product.description %></div>
+          <div class="image"><a href="/products/<%= product.id %>"><img src="<%= product.image_url %>"></a></div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
 </div>

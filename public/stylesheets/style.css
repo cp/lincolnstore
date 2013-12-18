@@ -37,14 +37,43 @@ p#intro {
   border: 1px dashed #524656;
 }
 
+#page {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 #home {
+  text-align: center;
+}
+
+.product {
+}
+
+.product .image img {
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  -webkit-border-radius: 190px;
+  -moz-border-radius: 190px;
+  border-radius: 190px;
+}
+
+.product .name {
+  text-align: center;
+  font-weight: bold;
+}
+
+.product .description {
   text-align: center;
 }
 
 footer {
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  margin-top: 20px;
   max-width: 1000px;
   border-top: 1px dashed #524656;
   padding: 10px;
