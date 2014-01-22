@@ -10,7 +10,7 @@ use Rack::Session::Cookie, expire_after: 31556926,
                            secret: ENV['SESSION_SECRET']
 
 get '/' do
-  @products = Product.all.limit(9)
+  @products = Product.all.limit(9).reverse_order
   erb :index
 end
 
@@ -18,20 +18,34 @@ end
 get '/admin' do
   authenticate
   @products = Product.all
-  @orders = []
   erb :'admin/index'
 end
 
-get '/admin/products/:id/edit' do
-  erb :'admin/products/edit'
+get '/admin/products/:id/delete' do
+  product = Product.find(params[:id])
+
+  if product.destroy
+    flash[:success] = "#{product.name} has been removed."
+    redirect '/admin'
+  else
+    flash[:error] = "Failed while trying to remove #{product.name}."
+    redirect '/admin'
+  end
 end
 
-get 'admin/products/new' do
+get '/admin/products/new' do
   erb :'admin/products/new'
 end
 
 post '/admin/products/new' do
-  redirect '/admin' if Product.create(params[:product])
+  product = Product.create! do |p|
+    p.name        = params[:name]
+    p.description = params[:description]
+    p.image_url   = params[:image_url]
+    p.price       = params[:price]
+  end
+
+  redirect "/products/#{product.id}"
 end
 
 # Products
