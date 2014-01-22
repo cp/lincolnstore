@@ -1,8 +1,7 @@
 require 'sinatra'
 require 'sinatra/flash'
 require File.expand_path('../environment.rb', __FILE__)
-Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|model| require model }
-
+require File.expand_path('../models/product.rb', __FILE__)
 
 # Use secret from env variable, and expire sessions after a year.
 use Rack::Session::Cookie, expire_after: 31556926,
@@ -22,6 +21,7 @@ get '/admin' do
 end
 
 get '/admin/products/:id/delete' do
+  authenticate
   product = Product.find(params[:id])
 
   if product.destroy
@@ -34,10 +34,12 @@ get '/admin/products/:id/delete' do
 end
 
 get '/admin/products/new' do
+  authenticate
   erb :'admin/products/new'
 end
 
 post '/admin/products/new' do
+  authenticate
   product = Product.create! do |p|
     p.name        = params[:name]
     p.description = params[:description]
